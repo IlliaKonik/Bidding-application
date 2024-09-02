@@ -1,3 +1,4 @@
+using ps_globomantics_signalr.Hubs;
 using ps_globomantics_signalr.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,4 +34,5 @@ app.MapPost("auction/{auctionId}/newbid", (int auctionId, int currentBid, IAucti
     auctionRepo.NewBid(auctionId, currentBid);
 });
 
+app.MapHub<AuctionHub>("/auctionHub");
 app.Run();

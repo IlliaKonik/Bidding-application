@@ -4,30 +4,31 @@
     <div class="col-md-10 col-md-offset-2">
         <table class="table">
             <thead>
-                <tr>
-                    <th>Item</th>
-                    <th class="textright">Current bid</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>Item</th>
+                <th class="textright">Current bid</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var auction in Model)
-                {
-                    <tr id="@auction.Id-tr" class="align-middle">
-                        <td>@auction.ItemName</td>
-                        <td id="@auction.Id-bidtext" class="bid">@auction.CurrentBid</td>
-                        <td class="bid-form-td">
-                            <input id="@auction.Id-input" class="bid-input" type="number" value="@(auction.CurrentBid + 1)" />
-                            <button class="btn btn-primary" type="button" onclick="submitBid(@auction.Id)">Bid</button>
-                        </td>
-                    </tr>
-                }
+            @foreach (var auction in Model)
+            {
+            <tr id="@auction.Id-tr" class="align-middle">
+                <td>@auction.ItemName</td>
+                <td id="@auction.Id-bidtext" class="bid">@auction.CurrentBid</td>
+                <td class="bid-form-td">
+                    <input id="@auction.Id-input" class="bid-input" type="number" min="@(auction.CurrentBid + 1)" value="@(auction.CurrentBid + 1)" />
+                    <button class="btn btn-primary" type="button" onclick="submitBid(@auction.Id)">Bid</button>
+                    <div id="@auction.Id-error" class="text-danger" style="display:none;">Your bid must be higher than the current bid.</div>
+                </td>
+            </tr>
+            }
             </tbody>
         </table>
     </div>
 </div>
 
 @section scripts {
-    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/signalr/signalr.min.js"></script>
     <script src="~/js/homeindex.js" asp-append-version="true"></script> 
 }
