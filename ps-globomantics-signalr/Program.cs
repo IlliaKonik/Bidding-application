@@ -1,5 +1,7 @@
 using ps_globomantics_signalr.Hubs;
 using ps_globomantics_signalr.Repositories;
+using Microsoft.AspNetCore.SignalR;
+using ps_globomantics_signalr.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,5 +36,10 @@ app.MapPost("auction/{auctionId}/newbid", (int auctionId, int currentBid, IAucti
     auctionRepo.NewBid(auctionId, currentBid);
 });
 
+app.MapPost("auction", (Auction auction, IAuctionRepo auctionRepo, IHubContext<AuctionHub> hubContext) =>
+{
+    auctionRepo.AddAuction(auction);
+    hubContext.Clients.All.SendAsync("ReceiveNewAuction", auction);
+});
 app.MapHub<AuctionHub>("/auctionHub");
 app.Run();

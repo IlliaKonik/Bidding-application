@@ -11,11 +11,4 @@
     <Folder Include="wwwroot\js\signalr\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\lib\signalr\signalr.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\lib\signalr\signalr.js.map" />
-    <_ContentIncludedByDefault Remove="wwwroot\lib\signalr\signalr.min.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\lib\signalr\signalr.min.js.map" />
-  </ItemGroup>
-
 </Project>
