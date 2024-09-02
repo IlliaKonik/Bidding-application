@@ -24,6 +24,10 @@ body {
     width: 140px;
 }
 
+.outbid {
+    background-color: #f33030;
+}
+
 .textright {
     text-align: right;
 }

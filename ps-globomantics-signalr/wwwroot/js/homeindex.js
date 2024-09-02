@@ -12,8 +12,12 @@ const initSignalRConnection = () => {
         const tr = document.getElementById(auctionId + "-tr");
         const input = document.getElementById(auctionId + "-input");
         
-        tr.classList.add("animate-highlight");
-        setTimeout(() =>{tr.classList.remove("animate-highlight");}, 2000);
+        if(!tr.classList.contains("outbid")) {
+            tr.classList.add("animate-highlight");
+            setTimeout(() => {
+                tr.classList.remove("animate-highlight");
+            }, 2000);
+        }
         
         const bidText = document.getElementById(auctionId + "-bidtext");
         bidText.innerHTML = newBid;
@@ -32,6 +36,12 @@ const initSignalRConnection = () => {
                                 </td>
                             </tr>`;
     });
+
+    connection.on("NotifyOutbid", ({ auctionId }) => {
+        const tr = document.getElementById(auctionId + "-tr");
+        if (!tr.classList.contains("outbid"))
+            tr.classList.add("outbid");
+    });
     
     connection.start().catch(console.error);
     return connection;
@@ -41,6 +51,9 @@ const connection = initSignalRConnection();
 const submitBid = (auctionId) => {
     if(!validateBid(auctionId))
         return;
+
+    const tr = document.getElementById(auctionId + "-tr");
+    tr.classList.remove("outbid");
     
     const bid = document.getElementById(auctionId + "-input").value;
     
