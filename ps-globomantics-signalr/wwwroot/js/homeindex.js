@@ -65,6 +65,10 @@ const submitBid = (auctionId) => {
         }
     });
     
+    if(!connection.state === "Connected"){
+        location.reload();
+    }
+    
     connection.invoke("NotifyNewBid",{
         AuctionId: parseInt(auctionId),
         NewBid: parseInt(bid),
