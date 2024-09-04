@@ -32,7 +32,7 @@ const initSignalRConnection = () => {
                                 <td id="${Id}}-bidtext" class="bid">${CurrentBid}</td >
                                 <td class="bid-form-td">
                                     <input id="${Id}-input" class="bid-input" type="number" value="${CurrentBid + 1}" />
-                                    <button class="btn btn-primary" type="button" onclick="submitBid(${id})">Bid</button>
+                                    <button class="btn btn-primary" type="button" onclick="submitBid(${Id}">Bid</button>
                                     <div id="${Id}-error" class="text-danger" style="display:none;">Your bid must be higher than the current bid.</div>
                                 </td>
                             </tr>`;
